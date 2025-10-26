@@ -89,18 +89,31 @@ export default {
 .phone-frame {
     position: relative;
     width: 100%;
-    max-width: calc(12.9vw + 10vh);
+    max-width: calc(20vw);
     aspect-ratio: 9 / 19.5;
     margin: 0 auto;
 
+    @media (max-width: 1600px) {
+        max-width: calc(18vw);
+        margin-top: 5vh;
+    }
+
     @media (max-width: 768px) {
-        max-width: calc(12vw + 10vh);
+        max-width: calc(35vw + 10vh);
+        margin-top: 0;
     }
 
-    @media (max-height:1000px) {
-        max-width: calc(10.9vw + 10vh);
 
-    }
+
+    // @media (max-height:1000px max-width:1000px ) {
+    //     margin-bottom: 5vh;
+    //     max-width: 17vw;
+    // }
+
+    // @media (max-height:850px) {
+    //     margin-bottom: 5vh;
+    //     max-width: 15vw;
+    // }
 }
 
 .frame-content {

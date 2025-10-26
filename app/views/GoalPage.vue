@@ -2,10 +2,12 @@
     <div class="goal-page">
         <div class="goal-wrapper" ref="goalWrapperRef">
             <h1 ref="goalTitleRef">Наша цель</h1>
-            <svg class="svg-line" ref="svgLineRef">
-                <line x1="45%" y1="45%" x2="55%" y2="45%" stroke="#FFECD2" stroke-width="calc(0.1vw + 0.1vh)"
-                    stroke-linecap="round" />
-            </svg>
+            <div class="svg-container">
+                <svg class="svg-line" ref="svgLineRef">
+                    <line x1="0%" y1="45%" x2="100%" y2="45%" stroke="#FFECD2" stroke-width="calc(0.1vw + 0.1vh)"
+                        stroke-linecap="round" />
+                </svg>
+            </div>
             <div class="content">
                 <p ref="goalDescriptionRef">Сделать отдых на природе простым, безопасным и вдохновляющим.</p>
             </div>
@@ -149,6 +151,7 @@ export default {
             }
         }
 
+
         @media (max-width: 700px) {
             letter-spacing: 0.15em;
             font-size: calc(6vw + 5vh);
@@ -184,15 +187,18 @@ export default {
         }
     }
 
-    .svg-line {
-        position: absolute;
-        color: $beige;
-        top: 0;
-        left: 0;
+    .svg-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2vh 0;
         width: 100%;
-        height: 100%;
+    }
 
-
+    .svg-line {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
         opacity: 0;
         transform: scale(0.8);
         transition: all 0.8s ease;
@@ -207,17 +213,6 @@ export default {
                 stroke-width: calc(0.2vw + 0vh);
                 stroke: rgba($beige, 0.8);
                 filter: drop-shadow(0 0 10px rgba($beige, 0.6));
-            }
-        }
-
-        @media (max-width: 700px) {
-            top: 7vh;
-            height: 60vh;
-            transform: translateY(8vh) scale(2);
-
-
-            &.animated {
-                transform: translateY(8vh) scale(1);
             }
         }
     }

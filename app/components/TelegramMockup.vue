@@ -86,7 +86,7 @@ export default {
 <style lang="scss" scoped>
 .telegram-mockup {
     font-family: $chat-font;
-    margin-top: calc(-0.56vw);
+    margin-top: calc(-0.26vw);
     margin-left: 0.5vw;
     width: 97%;
     height: 97%;
@@ -103,11 +103,6 @@ export default {
         margin-left: 2vw;
         width: 96%;
         height: 96%;
-    }
-
-    @media (max-height:1000px) {
-        padding-top: 0;
-        width: 92%;
     }
 }
 
@@ -172,6 +167,10 @@ export default {
     @media (max-width: 768px) {
         font-size: calc(3.5vw);
     }
+
+    // @media (max-height:900px) {
+    //     font-size: 0.73;
+    // }
 }
 
 .tg-chat-status {
@@ -285,6 +284,10 @@ export default {
 
         @media (max-width: 768px) {
             font-size: calc(1.5vw);
+        }
+
+        @media (max-width:1000px) {
+            font-size: 1.3vw;
         }
     }
 }

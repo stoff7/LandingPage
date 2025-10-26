@@ -293,6 +293,14 @@ export default {
     @media (max-width: 768px) {
         font-size: calc(2.5vw);
     }
+
+    // @media (max-height:950px) {
+    //     font-size: 0.75vw;
+    // }
+
+    // @media (max-height:950px) {
+    //     font-size: 0.65vw;
+    // }
 }
 
 .tg-message-time {

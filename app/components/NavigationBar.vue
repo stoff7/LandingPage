@@ -380,16 +380,27 @@ export default {
 
   @media (hover: hover) {
     &:hover {
-      transform: translateY(-8px) scale(1.08);
+      transform: translateY(-5px) scale(1.05);
+      text-shadow: 0 0 8px rgba($beige, 0.4);
       color: $orange;
-      text-shadow: 0 0 15px rgba($orange, 0.8);
-      // Используем миксин для подчеркивания
-      @include animated-underline($beige, 2px, $animation-duration-fast);
 
       &::after {
         width: 100%;
-        background: linear-gradient(90deg, $orange, $beige);
       }
+    }
+
+    // Используем миксин для подчеркивания
+    @include animated-underline($beige, 2px, $animation-duration-fast);
+
+  }
+
+  // Эффекты для мобильных устройств (без hover)
+  @media (hover: none) {
+    &:active {
+      transform: translateY(-2px) scale(1.02);
+      color: $orange;
+      text-shadow: 0 0 10px rgba($orange, 0.5);
+      transition: all $animation-duration-fast $animation-ease-material;
     }
   }
 
