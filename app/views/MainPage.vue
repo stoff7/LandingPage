@@ -54,13 +54,16 @@ export default {
         }
 
         onMounted(() => {
-            // Последовательная анимация появления элементов главной страницы
-            addAnimation(imageContainerRef.value, 'scale-in', 600)
-            addAnimation(backgroundImageRef.value, 'fade-in', 800)
-            addAnimation(heroTitleRef.value, 'fade-in-up', 1600)
-            addAnimation(heroSubtitleRef.value, 'fade-in-up', 2000)
-            addAnimation(buttonRef.value, 'fade-in-up', 2400)
-            addAnimation(chatRef.value?.$el, 'fade-in-right', 2800)
+            // Задержка для предотвращения дерганья при первой загрузке
+            setTimeout(() => {
+                // Последовательная анимация появления элементов главной страницы
+                addAnimation(imageContainerRef.value, 'scale-in', 200)
+                addAnimation(backgroundImageRef.value, 'fade-in', 400)
+                addAnimation(heroTitleRef.value, 'fade-in-up', 800)
+                addAnimation(heroSubtitleRef.value, 'fade-in-up', 1200)
+                addAnimation(buttonRef.value, 'fade-in-up', 1600)
+                addAnimation(chatRef.value?.$el, 'fade-in-right', 2000)
+            }, 100)
         })
 
         return {
@@ -106,6 +109,7 @@ body {
     @include animation-hidden();
     transform: scale(0.9);
     @include smooth-transition($animation-duration-fast);
+    will-change: transform, opacity;
 
     &.animated {
         opacity: 1;
@@ -162,6 +166,7 @@ body {
     @include animation-hidden();
     transform: translateY($animation-distance-large);
     @include smooth-transition($animation-duration-fast);
+    will-change: transform, opacity;
 
     &.animated {
         opacity: 1;
@@ -208,6 +213,7 @@ body {
     @include animation-hidden();
     transform: translateY($animation-distance-large);
     @include smooth-transition($animation-duration-fast);
+    will-change: transform, opacity;
 
     &.animated {
         opacity: 0.95;
@@ -246,6 +252,7 @@ body {
     -webkit-tap-highlight-color: transparent;
     transform: scale(0.9);
     filter: blur(0.93vh);
+    will-change: transform, opacity, filter;
 
     // Используем унифицированную длительность и timing
     transition: all $animation-duration-very-slow $animation-ease-smooth;
@@ -278,6 +285,7 @@ body {
     @include animation-hidden();
     transform: translateY($animation-distance-large);
     @include smooth-transition($animation-duration-fast);
+    will-change: transform, opacity;
 
     &.animated {
         opacity: 1;
