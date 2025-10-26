@@ -86,7 +86,7 @@ export default {
 <style lang="scss" scoped>
 .telegram-mockup {
     font-family: $chat-font;
-    margin-top: calc(-0.26vw);
+    margin-top: calc(-0.56vw);
     margin-left: 0.5vw;
     width: 97%;
     height: 97%;
@@ -103,6 +103,11 @@ export default {
         margin-left: 2vw;
         width: 96%;
         height: 96%;
+    }
+
+    @media (max-height:1000px) {
+        padding-top: 0;
+        width: 92%;
     }
 }
 

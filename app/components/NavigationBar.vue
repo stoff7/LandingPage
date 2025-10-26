@@ -203,6 +203,7 @@ export default {
   box-sizing: border-box;
   opacity: 0;
   transform: translateY(-$animation-distance-nav);
+  cursor: default;
 
 
 

@@ -4,7 +4,6 @@ services:
   nuxt-app:
     build:
       context: .
-      platform: linux/amd64
     ports:
       - "3000:3000"
     environment:

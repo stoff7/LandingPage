@@ -472,6 +472,7 @@ export default {
 /* Instructions Column */
 .instructions-content {
     margin-left: 8vw;
+    margin-right: 5vw;
     display: flex;
     flex-direction: column;
     text-align: end;
@@ -484,10 +485,11 @@ export default {
     }
 
     h1 {
-        font-size: calc(4.9vw + 0vh);
+        font-size: calc(3vw + 2vh);
         font-weight: bold;
         letter-spacing: 0.15em;
-        margin-bottom: 12vh;
+        width: 100vw;
+        margin-bottom: 5vh;
         color: $beige;
         text-shadow: calc(0.1vw) calc(0.1vw) calc(0.4vw) rgba(0, 0, 0, 0.7);
         transition: text-shadow 0.3s ease-out, transform 0.3s ease-out;
@@ -517,6 +519,8 @@ export default {
         line-height: 1.6;
         text-shadow: calc(0.05vw) calc(0.05vw) calc(0.2vw) rgba(0, 0, 0, 0.6);
         transition: opacity 0.3s ease-out, text-shadow 0.3s ease-out;
+
+
 
         @media (max-width: 768px) {
             display: none;
@@ -575,7 +579,7 @@ export default {
     align-items: center;
     gap: calc(2.1vw);
     width: 100%;
-    min-width: calc(36.5vw); // Фиксированная минимальная ширина для предотвращения сдвигов
+    min-width: calc(46.5vw); // Фиксированная минимальная ширина для предотвращения сдвигов
 
     @media (max-width: 768px) {
         gap: calc(2vw);
