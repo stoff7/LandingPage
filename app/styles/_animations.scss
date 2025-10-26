@@ -1,0 +1,752 @@
+// ========================================
+// УНИФИЦИРОВАННАЯ СИСТЕМА АНИМАЦИЙ
+// TRAVEL AI PROJECT
+// ========================================
+
+// ========================================
+// ПЕРЕМЕННЫЕ ДЛЯ АНИМАЦИЙ
+// ========================================
+
+// Длительность
+$animation-duration-instant: 0.15s;
+$animation-duration-fast: 0.3s;
+$animation-duration-normal: 0.6s;
+$animation-duration-slow: 0.8s;
+$animation-duration-very-slow: 1.2s;
+
+// Timing functions (easing)
+$animation-ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$animation-ease-material: cubic-bezier(0.4, 0, 0.2, 1);
+$animation-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$animation-ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+
+// Расстояния для сдвигов
+$animation-distance-small: 20px;
+$animation-distance-medium: 30px;
+$animation-distance-large: 50px;
+$animation-distance-xlarge: 80px;
+$animation-distance-nav: 100px;
+
+// ========================================
+// БАЗОВЫЕ KEYFRAMES - ПОЯВЛЕНИЕ
+// ========================================
+
+// Появление снизу (стандартное)
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY($animation-distance-medium);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Появление снизу (большое расстояние)
+@keyframes fadeInUpLarge {
+  from {
+    opacity: 0;
+    transform: translateY($animation-distance-xlarge);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Появление сверху
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-$animation-distance-medium);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Появление слева
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-$animation-distance-medium);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Появление слева (большое расстояние)
+@keyframes fadeInLeftLarge {
+  from {
+    opacity: 0;
+    transform: translateX(-$animation-distance-large);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Появление справа
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX($animation-distance-medium);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Появление справа (большое расстояние)
+@keyframes fadeInRightLarge {
+  from {
+    opacity: 0;
+    transform: translateX($animation-distance-large);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Простое появление (fade)
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ========================================
+// KEYFRAMES - ИСЧЕЗНОВЕНИЕ
+// ========================================
+
+// Исчезновение вниз (стандартное)
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY($animation-distance-medium);
+  }
+}
+
+// Исчезновение вниз (большое расстояние)
+@keyframes fadeOutDownLarge {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY($animation-distance-xlarge);
+  }
+}
+
+// Исчезновение вверх
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-$animation-distance-medium);
+  }
+}
+
+// Исчезновение влево
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-$animation-distance-medium);
+  }
+}
+
+// Исчезновение влево (большое расстояние)
+@keyframes fadeOutLeftLarge {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-$animation-distance-large);
+  }
+}
+
+// Исчезновение вправо
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX($animation-distance-medium);
+  }
+}
+
+// Исчезновение вправо (большое расстояние)
+@keyframes fadeOutRightLarge {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX($animation-distance-large);
+  }
+}
+
+// Простое исчезновение (fade)
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// ========================================
+// KEYFRAMES - МАСШТАБИРОВАНИЕ
+// ========================================
+
+// Масштабирование с появлением
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Масштабирование с исчезновением
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+// Масштабирование с появлением снизу
+@keyframes scaleInUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY($animation-distance-medium);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Масштабирование с исчезновением вниз
+@keyframes scaleOutDown {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9) translateY($animation-distance-medium);
+  }
+}
+
+// ========================================
+// KEYFRAMES - СПЕЦИАЛЬНЫЕ ЭФФЕКТЫ
+// ========================================
+
+// Пульсация
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// Покачивание
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+// Слайд для навигации (сверху вниз)
+@keyframes slideDownNav {
+  from {
+    opacity: 0;
+    transform: translateY(-$animation-distance-nav);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Слайд для навигации вверх (исчезновение)
+@keyframes slideUpNav {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-$animation-distance-nav);
+  }
+}
+
+// Слайд слева с масштабом (для сообщений)
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-$animation-distance-medium, 0, 0) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Слайд влево с масштабом (исчезновение для сообщений)
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-$animation-distance-medium, 0, 0) scale(0.95);
+  }
+}
+
+// Слайд справа с масштабом (для сообщений)
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translate3d($animation-distance-medium, 0, 0) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+// Слайд вправо с масштабом (исчезновение для сообщений)
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d($animation-distance-medium, 0, 0) scale(0.95);
+  }
+}
+
+// Эффект печатания
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+// Мигание курсора
+@keyframes blinkCursor {
+  from {
+    border-right-color: $beige;
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+// Фоновое появление (для больших блоков)
+@keyframes bgFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 0.51;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+// Фоновое исчезновение (для больших блоков)
+@keyframes bgFadeOut {
+  from {
+    opacity: 0.51;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: blur(10px);
+  }
+}
+
+// ========================================
+// БАЗОВЫЕ КЛАССЫ ДЛЯ АНИМАЦИЙ
+// ========================================
+
+// Базовый класс для всех анимированных элементов
+.animated {
+  animation-duration: $animation-duration-normal;
+  animation-fill-mode: both;
+  animation-timing-function: $animation-ease-smooth;
+  
+  // Оптимизация производительности
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ========================================
+// КЛАССЫ ПОЯВЛЕНИЯ (FADE IN)
+// ========================================
+
+.fade-in-up {
+  animation-name: fadeInUp;
+}
+
+.fade-in-up-large {
+  animation-name: fadeInUpLarge;
+}
+
+.fade-in-down {
+  animation-name: fadeInDown;
+}
+
+.fade-in-left {
+  animation-name: fadeInLeft;
+}
+
+.fade-in-left-large {
+  animation-name: fadeInLeftLarge;
+}
+
+.fade-in-right {
+  animation-name: fadeInRight;
+}
+
+.fade-in-right-large {
+  animation-name: fadeInRightLarge;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+.scale-in {
+  animation-name: scaleIn;
+}
+
+.scale-in-up {
+  animation-name: scaleInUp;
+}
+
+.bg-fade-in {
+  animation-name: bgFadeIn;
+}
+
+// ========================================
+// КЛАССЫ ИСЧЕЗНОВЕНИЯ (FADE OUT)
+// ========================================
+
+.fade-out-down {
+  animation-name: fadeOutDown;
+}
+
+.fade-out-down-large {
+  animation-name: fadeOutDownLarge;
+}
+
+.fade-out-up {
+  animation-name: fadeOutUp;
+}
+
+.fade-out-left {
+  animation-name: fadeOutLeft;
+}
+
+.fade-out-left-large {
+  animation-name: fadeOutLeftLarge;
+}
+
+.fade-out-right {
+  animation-name: fadeOutRight;
+}
+
+.fade-out-right-large {
+  animation-name: fadeOutRightLarge;
+}
+
+.fade-out {
+  animation-name: fadeOut;
+}
+
+.scale-out {
+  animation-name: scaleOut;
+}
+
+.scale-out-down {
+  animation-name: scaleOutDown;
+}
+
+.bg-fade-out {
+  animation-name: bgFadeOut;
+}
+
+// ========================================
+// КЛАССЫ ДЛЯ СПЕЦИАЛЬНЫХ АНИМАЦИЙ
+// ========================================
+
+.slide-down-nav {
+  animation-name: slideDownNav;
+}
+
+.slide-up-nav {
+  animation-name: slideUpNav;
+}
+
+.slide-in-left {
+  animation-name: slideInLeft;
+}
+
+.slide-out-left {
+  animation-name: slideOutLeft;
+}
+
+.slide-in-right {
+  animation-name: slideInRight;
+}
+
+.slide-out-right {
+  animation-name: slideOutRight;
+}
+
+// ========================================
+// КЛАССЫ ДЛЯ HOVER ЭФФЕКТОВ
+// ========================================
+
+.hover-pulse {
+  transition: transform $animation-duration-fast $animation-ease-material;
+  
+  &:hover {
+    animation: pulse 1s infinite;
+  }
+}
+
+.hover-scale {
+  transition: transform $animation-duration-fast $animation-ease-material;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hover-lift {
+  transition: transform $animation-duration-fast $animation-ease-material;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.hover-glow {
+  transition: box-shadow $animation-duration-fast $animation-ease-material,
+              text-shadow $animation-duration-fast $animation-ease-material;
+  
+  &:hover {
+    box-shadow: 0 0 20px rgba($beige, 0.5);
+    text-shadow: 0 0 15px rgba($beige, 0.6);
+  }
+}
+
+// ========================================
+// КЛАССЫ ЗАДЕРЖЕК (DELAYS)
+// ========================================
+
+.delay-instant { animation-delay: 0.1s; }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.6s; }
+.delay-5 { animation-delay: 0.75s; }
+.delay-6 { animation-delay: 0.9s; }
+.delay-7 { animation-delay: 1.05s; }
+.delay-8 { animation-delay: 1.2s; }
+
+// ========================================
+// КЛАССЫ СКОРОСТЕЙ (DURATIONS)
+// ========================================
+
+.instant { animation-duration: $animation-duration-instant; }
+.fast { animation-duration: $animation-duration-fast; }
+.normal { animation-duration: $animation-duration-normal; }
+.slow { animation-duration: $animation-duration-slow; }
+.very-slow { animation-duration: $animation-duration-very-slow; }
+
+// ========================================
+// КЛАССЫ TIMING FUNCTIONS
+// ========================================
+
+.ease-smooth { animation-timing-function: $animation-ease-smooth; }
+.ease-material { animation-timing-function: $animation-ease-material; }
+.ease-bounce { animation-timing-function: $animation-ease-bounce; }
+.ease-in-out-cubic { animation-timing-function: $animation-ease-in-out-cubic; }
+
+// ========================================
+// TRANSITION УТИЛИТЫ
+// ========================================
+
+.transition-all {
+  transition: all $animation-duration-fast $animation-ease-material;
+}
+
+.transition-all-normal {
+  transition: all $animation-duration-normal $animation-ease-smooth;
+}
+
+.transition-colors {
+  transition: color $animation-duration-fast $animation-ease-material,
+              background-color $animation-duration-fast $animation-ease-material,
+              border-color $animation-duration-fast $animation-ease-material;
+}
+
+.transition-transform {
+  transition: transform $animation-duration-fast $animation-ease-material;
+}
+
+.transition-transform-smooth {
+  transition: transform $animation-duration-normal $animation-ease-smooth;
+}
+
+.transition-opacity {
+  transition: opacity $animation-duration-fast $animation-ease-material;
+}
+
+// ========================================
+// СПЕЦИАЛЬНЫЕ ЭФФЕКТЫ
+// ========================================
+
+// Эффект свечения
+.glow-effect {
+  transition: box-shadow $animation-duration-fast $animation-ease-material;
+  
+  &:hover {
+    box-shadow: 0 0 20px rgba($beige, 0.5);
+  }
+}
+
+// Эффект границы (анимированная линия)
+.border-animation {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $beige, transparent);
+    transition: left $animation-duration-slow $animation-ease-smooth;
+  }
+  
+  &:hover::before {
+    left: 100%;
+  }
+}
+
+// Эффект подчеркивания при hover
+.underline-animation {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $orange, $beige);
+    transition: width $animation-duration-fast $animation-ease-material;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// Эффект печатания
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid $beige;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40) 1s 1 normal both,
+             blinkCursor 1s steps(40) infinite normal;
+}
+
+// ========================================
+// УТИЛИТЫ ДЛЯ ОПТИМИЗАЦИИ
+// ========================================
+
+// Применять к анимированным элементам для лучшей производительности
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-auto {
+  will-change: auto;
+}
+
+// Убирает мерцание при анимациях
+.no-flicker {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0);
+}

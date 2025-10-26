@@ -1,0 +1,198 @@
+// ========================================
+// LAYOUT MIXINS
+// ========================================
+
+@mixin flex-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// ========================================
+// ANIMATION MIXINS
+// ========================================
+
+/**
+ * Базовая настройка для анимированного элемента
+ * Применяется к элементам, которые будут анимироваться
+ */
+@mixin animated-base($duration: $animation-duration-normal, $timing: $animation-ease-smooth) {
+    animation-duration: $duration;
+    animation-fill-mode: both;
+    animation-timing-function: $timing;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/**
+ * Начальное состояние для fade-in анимаций
+ * Элемент невидим до начала анимации
+ */
+@mixin animation-hidden() {
+    opacity: 0;
+    transform: translateY($animation-distance-medium);
+}
+
+/**
+ * Плавный переход для всех свойств
+ */
+@mixin smooth-transition($duration: $animation-duration-fast, $timing: $animation-ease-material) {
+    transition: all $duration $timing;
+}
+
+/**
+ * Переход только для transform
+ */
+@mixin transition-transform($duration: $animation-duration-fast, $timing: $animation-ease-material) {
+    transition: transform $duration $timing;
+}
+
+/**
+ * Оптимизация производительности для анимированных элементов
+ */
+@mixin animation-performance() {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
+}
+
+/**
+ * Hover эффект: поднятие элемента
+ */
+@mixin hover-lift($distance: 5px, $duration: $animation-duration-fast) {
+    transition: transform $duration $animation-ease-material,
+                box-shadow $duration $animation-ease-material;
+    
+    &:hover {
+        transform: translateY(-$distance);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/**
+ * Hover эффект: масштабирование
+ */
+@mixin hover-scale($scale: 1.05, $duration: $animation-duration-fast) {
+    transition: transform $duration $animation-ease-material;
+    
+    &:hover {
+        transform: scale($scale);
+    }
+}
+
+/**
+ * Hover эффект: свечение
+ */
+@mixin hover-glow($color: $beige, $intensity: 0.5, $duration: $animation-duration-fast) {
+    transition: box-shadow $duration $animation-ease-material,
+                text-shadow $duration $animation-ease-material;
+    
+    &:hover {
+        box-shadow: 0 0 20px rgba($color, $intensity);
+        text-shadow: 0 0 15px rgba($color, $intensity + 0.1);
+    }
+}
+
+/**
+ * Эффект стеклянного морфизма (glassmorphism)
+ */
+@mixin glass-effect($bg-opacity: 0.08, $blur: 12px, $border-opacity: 0.18) {
+    background: rgba(255, 255, 255, $bg-opacity);
+    backdrop-filter: blur($blur) saturate(1.2);
+    -webkit-backdrop-filter: blur($blur) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, $border-opacity);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Анимированная подчеркивающая линия при hover
+ */
+@mixin animated-underline($color: $beige, $height: 2px, $duration: $animation-duration-fast) {
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: $height;
+        background: linear-gradient(90deg, $orange, $color);
+        transition: width $duration $animation-ease-material;
+    }
+    
+    &:hover::after {
+        width: 100%;
+    }
+}
+
+/**
+ * Градиентный текст
+ */
+@mixin gradient-text($color1: $orange, $color2: $beige) {
+    background: linear-gradient(90deg, $color1, $color2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/**
+ * Обрезка текста с многоточием
+ */
+@mixin text-ellipsis($lines: 1) {
+    @if $lines == 1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+/**
+ * Скрывает элемент визуально, но оставляет доступным для скринридеров
+ */
+@mixin visually-hidden() {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/**
+ * Responsive breakpoints
+ */
+@mixin mobile {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1201px) {
+        @content;
+    }
+}
+
+@mixin large-desktop {
+    @media (min-width: 1920px) {
+        @content;
+    }
+}
